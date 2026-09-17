@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sběratelská MMA Karta – Zadní strana | Martin Sedlák 50</title>
+  <meta name="description" content="Oficiální tajný přístup k videím z tréninkového kempu pro tátu k 50. narozeninám. Skenuj QR kód." />
+
+  <!-- Google Fonts: Bebas Neue, Montserrat, Space Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- QRCode.js knihovna přes CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <style>
+    /* ==========================================================================
+       RESET & BASE DESIGN TOKENS
+       ========================================================================== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-dark: #07080a;
+      --bg-card: #0d0f13;
+      --bg-surface: #14171d;
+      --oktagon-yellow: #f5d000;
+      --oktagon-yellow-glow: rgba(245, 208, 0, 0.4);
+      --red-alert: #ff2a44;
+      --red-alert-glow: rgba(255, 42, 68, 0.4);
+      --text-white: #ffffff;
+      --text-silver: #c5cbd3;
+      --text-muted: #788290;
+      --border-wire: rgba(245, 208, 0, 0.2);
+      
+      --font-display: 'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
+      --font-body: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'Space Mono', 'Courier New', monospace;
+    }
+
+    html,
+    body {
+      background: #020304;
+      color: var(--text-white);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Screen layout wrapper (mockup centering) */
+    .screen-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 16px 50px;
+      min-height: 100vh;
+      background: radial-gradient(circle at 50% 20%, #161a22 0%, #060709 100%);
+    }
+
+    /* ==========================================================================
+       PRINT CONTROLS (Zobrazují se pouze na obrazovce)
+       ========================================================================== */
+    .print-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding: 12px 20px;
+      background: rgba(20, 23, 29, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(245, 208, 0, 0.3);
+      border-radius: 50px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      z-index: 100;
+    }
+
+    .print-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      background: linear-gradient(135deg, #f5d000 0%, #e0bd00 100%);
+      color: #000;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(245, 208, 0, 0.4);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .print-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(245, 208, 0, 0.6);
+    }
+
+    .print-btn:active {
+      transform: translateY(1px);
+    }
+
+    .toolbar-hint {
+      font-size: 12px;
+      color: var(--text-silver);
+      font-family: var(--font-mono);
+    }
+
+    .format-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: rgba(245, 208, 0, 0.12);
+      border: 1px solid var(--oktagon-yellow);
+      color: var(--oktagon-yellow);
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      letter-spacing: 0.5px;
+    }
+
+    /* ==========================================================================
+       MMA COLLECTIBLE CARD CONTAINER
+       Standardizováno na formát A5 (148 x 210 mm) s poměrem stran blízkým 9:16
+       ========================================================================== */
+    .card-outer-wrapper {
+      position: relative;
+      /* Přesné fyzické rozměry formátu A5 */
+      width: 148mm;
+      height: 210mm;
+      max-width: 100%;
+      background: var(--bg-card);
+      border-radius: 6mm;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85),
+                  0 0 0 1px rgba(245, 208, 0, 0.35);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Pletivo klece Oktagon (Hexagonální SVG vzor) */
+    .card-cage-mesh {
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='48.497' viewBox='0 0 28 48.497'%3E%3Cpath d='M14 0l14 8.083v16.166L14 32.331 0 24.249V8.083L14 0zm0 48.497l14-8.083V24.249L14 16.166 0 24.249v16.165l14 8.083z' fill='none' stroke='%23f5d000' stroke-width='0.75' stroke-opacity='0.055'/%3E%3C/svg%3E");
+      background-size: 20mm 34.64mm;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Jemný carbon fiber vzor přes pletivo pro hloubku */
+    .card-carbon-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 48%, rgba(245, 208, 0, 0.09) 0%, rgba(13, 15, 19, 0.6) 45%, rgba(6, 7, 9, 0.96) 95%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Vnitřní obsah karty */
+    .card-content {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      padding: 9mm 9mm 8mm;
+      text-align: center;
+    }
+
+    /* ==========================================================================
+       VIEWFINDER BRACKETS (Hledáček kamery v rozích karty)
+       ========================================================================== */
+    .viewfinder-bracket {
+      position: absolute;
+      width: 8mm;
+      height: 8mm;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .bracket-tl {
+      top: 4.5mm;
+      left: 4.5mm;
+      border-top: 2.2px solid var(--oktagon-yellow);
+      border-left: 2.2px solid var(--oktagon-yellow);
+    }
+
+    .bracket-tr {
+      top: 4.5mm;
+      right: 4.5mm;
+      border-top: 2.2px solid var(--oktagon-yellow);
+      border-right: 2.2px solid var(--oktagon-yellow);
+    }
+
+    .bracket-bl {
+      bottom: 4.5mm;
+      left: 4.5mm;
+      border-bottom: 2.2px solid var(--oktagon-yellow);
+      border-left: 2.2px solid var(--oktagon-yellow);
+    }
+
+    .bracket-br {
+      bottom: 4.5mm;
+      right: 4.5mm;
+      border-bottom: 2.2px solid var(--oktagon-yellow);
+      border-right: 2.2px solid var(--oktagon-yellow);
+    }
+
+    /* Zaměřovací křížky po stranách */
+    .viewfinder-cross-left,
+    .viewfinder-cross-right {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(245, 208, 0, 0.4);
+      font-size: 12px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .viewfinder-cross-left { left: 3mm; }
+    .viewfinder-cross-right { right: 3mm; }
+
+    /* ==========================================================================
+       SEKCE 1: HORNÍ VAROVNÉ RAZÍTKO & BADGES
+       ========================================================================== */
+    .card-header-block {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.2mm;
+    }
+
+    .classified-stamp-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+
+    .classified-stamp {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 1.8mm 4.5mm;
+      background: rgba(255, 42, 68, 0.12);
+      border: 1.5px solid var(--red-alert);
+      color: var(--red-alert);
+      font-family: var(--font-mono);
+      font-size: 9.5pt;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      border-radius: 2px;
+      box-shadow: 0 0 14px rgba(255, 42, 68, 0.28);
+    }
+
+    .rec-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--red-alert);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--red-alert);
+      animation: pulseRec 1.8s infinite ease-in-out;
+    }
+
+    @keyframes pulseRec {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.35; transform: scale(0.85); }
+    }
+
+    .footage-sub-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 8.5pt;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      color: var(--oktagon-yellow);
+      text-transform: uppercase;
+      opacity: 0.95;
+    }
+
+    .footage-sub-badge::before,
+    .footage-sub-badge::after {
+      content: "—";
+      color: rgba(245, 208, 0, 0.5);
+    }
+
+    /* ==========================================================================
+       SEKCE 2: NÁZVY ZÁPASU & HLAVNÍ TITULEK
+       ========================================================================== */
+    .card-title-block {
+      width: 100%;
+      margin-top: 1mm;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5mm;
+    }
+
+    .main-title {
+      font-family: var(--font-display);
+      font-size: 21pt;
+      line-height: 1.05;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: #ffffff;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 255, 255, 0.15);
+    }
+
+    .matchup-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 0.5mm;
+    }
+
+    .fighter-name {
+      font-family: var(--font-body);
+      font-weight: 800;
+      font-size: 11pt;
+      letter-spacing: 0.8px;
+      color: var(--oktagon-yellow);
+      text-transform: uppercase;
+    }
+
+    .vs-tag {
+      font-family: var(--font-display);
+      font-size: 13pt;
+      color: var(--red-alert);
+      letter-spacing: 1px;
+      padding: 0 3px;
+    }
+
+    .opponent-name {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 10.5pt;
+      letter-spacing: 0.6px;
+      color: var(--text-silver);
+      text-transform: uppercase;
+    }
+
+    /* ==========================================================================
+       SEKCE 3: QR KÓD (MAXIMÁLNÍ KONTRAST & SKENOVATELNOST)
+       ========================================================================== */
+    .qr-section-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 1.5mm 0;
+    }
+
+    /* Vnější neonový rámeček */
+    .qr-neon-frame {
+      position: relative;
+      padding: 4.5mm;
+      background: rgba(18, 21, 28, 0.85);
+      border: 2px solid var(--oktagon-yellow);
+      border-radius: 4mm;
+      box-shadow: 0 0 25px var(--oktagon-yellow-glow),
+                  inset 0 0 15px rgba(245, 208, 0, 0.08);
+    }
+
+    /* Rámečkové dekorační rohy kolem QR boxu */
+    .qr-neon-frame::before,
+    .qr-neon-frame::after {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      pointer-events: none;
+    }
+    .qr-neon-frame::before {
+      top: -3px;
+      left: -3px;
+      border-top: 3px solid #ffffff;
+      border-left: 3px solid #ffffff;
+    }
+    .qr-neon-frame::after {
+      bottom: -3px;
+      right: -3px;
+      border-bottom: 3px solid #ffffff;
+      border-right: 3px solid #ffffff;
+    }
+
+    /* Čistě bílé pozadí pro QR kód (tzv. Quiet Zone – kritické pro čtení telefonem) */
+    .qr-white-plate {
+      background: #ffffff;
+      padding: 3.5mm;
+      border-radius: 2.5mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Samotné plátno/obrázek QR kódu */
+    #qrcode {
+      width: 50mm;
+      height: 50mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #qrcode img,
+    #qrcode canvas {
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+
+    /* Malý štítek pod QR kódem */
+    .qr-scan-hud {
+      margin-top: 2.5mm;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 7.5pt;
+      font-weight: 700;
+      color: var(--oktagon-yellow);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      background: rgba(245, 208, 0, 0.08);
+      padding: 1.2mm 3mm;
+      border-radius: 20px;
+      border: 1px dashed rgba(245, 208, 0, 0.4);
+    }
+
+    /* ==========================================================================
+       SEKCE 4: NÁVOD PRO TÁTU K POUŽITÍ
+       ========================================================================== */
+    .instructions-block {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5mm;
+      padding: 2.5mm 3mm;
+      background: rgba(20, 23, 29, 0.6);
+      border-left: 2.5px solid var(--oktagon-yellow);
+      border-right: 2.5px solid var(--oktagon-yellow);
+      border-radius: 2mm;
+    }
+
+    .instruction-main {
+      font-family: var(--font-body);
+      font-weight: 800;
+      font-size: 10pt;
+      color: #ffffff;
+      letter-spacing: 0.9px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .instruction-icon {
+      font-size: 12pt;
+    }
+
+    .instruction-sub {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 8pt;
+      color: var(--text-silver);
+      letter-spacing: 0.4px;
+    }
+
+    /* ==========================================================================
+       SEKCE 5: PATIČKA (OKTAGON 100, DATUM & ARÉNA)
+       ========================================================================== */
+    .card-footer-block {
+      width: 100%;
+      margin-top: 1mm;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2mm;
+    }
+
+    .gold-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(245, 208, 0, 0.6) 50%, transparent 100%);
+    }
+
+    .event-details {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      font-family: var(--font-mono);
+      font-size: 8pt;
+      font-weight: 700;
+      color: var(--text-white);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      flex-wrap: wrap;
+    }
+
+    .event-dot {
+      color: var(--oktagon-yellow);
+      font-size: 10pt;
+    }
+
+    /* Čárový kód a bezpečnostní kód karty */
+    .security-bar-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0 2mm;
+      opacity: 0.7;
+      font-family: var(--font-mono);
+      font-size: 6.5pt;
+      color: var(--text-muted);
+      letter-spacing: 0.8px;
+    }
+
+    .security-serial {
+      color: var(--oktagon-yellow);
+    }
+
+    .fake-barcode {
+      letter-spacing: 2px;
+      font-family: monospace;
+      font-size: 9pt;
+      font-weight: 900;
+      color: #9aa4b2;
+    }
+
+    /* ==========================================================================
+       TISKOVÉ CSS (@MEDIA PRINT)
+       Přísně optimalizováno pro čistý tisk na 1 list A5 bez okrajů a přetékání
+       ========================================================================== */
+    @media print {
+      @page {
+        size: A5 portrait;
+        margin: 0;
+      }
+
+      html,
+      body {
+        background: #07080a !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 148mm !important;
+        height: 210mm !important;
+        overflow: hidden !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+      }
+
+      .screen-container {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: none !important;
+        min-height: auto !important;
+        height: 210mm !important;
+        width: 148mm !important;
+        display: block !important;
+      }
+
+      /* Skrytí ovládacích prvků pro obrazovku */
+      .print-toolbar {
+        display: none !important;
+      }
+
+      .card-outer-wrapper {
+        width: 148mm !important;
+        height: 210mm !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        margin: 0 !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      .card-cage-mesh {
+        opacity: 0.75 !important;
+      }
+
+      .qr-white-plate {
+        box-shadow: none !important;
+      }
+
+      .qr-neon-frame {
+        box-shadow: 0 0 10px rgba(245, 208, 0, 0.3) !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="screen-container">
+
+    <!-- OVLÁDACÍ LIŠTA (pouze na obrazovce) -->
+    <header class="print-toolbar" role="toolbar" aria-label="Možnosti tisku">
+      <button class="print-btn" onclick="window.print()" type="button">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="6 9 6 2 18 2 18 9"></polyline>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+          <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+        Vytisknout kartu (A5)
+      </button>
+      <span class="format-badge">Formát A5 • 148 × 210 mm</span>
+      <span class="toolbar-hint">Tip: V tiskovém dialogu zaškrtněte „Grafika na pozadí“</span>
+    </header>
+
+    <!-- SAMOTNÁ SBĚRATELSKÁ KARTA -->
+    <main class="card-outer-wrapper" id="printable-card" aria-label="Zadní strana sběratelské MMA karty">
+
+      <!-- Textury pozadí: Pletivo klece & radiální gradient -->
+      <div class="card-cage-mesh" aria-hidden="true"></div>
+      <div class="card-carbon-overlay" aria-hidden="true"></div>
+
+      <!-- Rohové rámečky (Viewfinder / hledáček kamery) -->
+      <div class="viewfinder-bracket bracket-tl" aria-hidden="true"></div>
+      <div class="viewfinder-bracket bracket-tr" aria-hidden="true"></div>
+      <div class="viewfinder-bracket bracket-bl" aria-hidden="true"></div>
+      <div class="viewfinder-bracket bracket-br" aria-hidden="true"></div>
+
+      <!-- Boční zaměřovací značky -->
+      <div class="viewfinder-cross-left" aria-hidden="true">+</div>
+      <div class="viewfinder-cross-right" aria-hidden="true">+</div>
+
+      <!-- HLAVNÍ OBSAH KARTY -->
+      <div class="card-content">
+
+        <!-- 1. HORNÍ RAZÍTKO / BADGE -->
+        <section class="card-header-block">
+          <div class="classified-stamp-wrapper">
+            <div class="classified-stamp">
+              <span class="rec-dot" aria-hidden="true"></span>
+              [ PŘÍSNĚ TAJNÉ / CLASSIFIED ]
+            </div>
+          </div>
+          <div class="footage-sub-badge">
+            UNLEAKED BJP FOOTAGE
+          </div>
+        </section>
+
+        <!-- 2. TITULKY & ZÁPAS -->
+        <section class="card-title-block">
+          <h1 class="main-title">OFICIÁLNÍ ZÁZNAM TRÉNINKOVÉHO KEMPU</h1>
+          <div class="matchup-row">
+            <span class="fighter-name">Martin "Hardworker" Sedlák</span>
+            <span class="vs-tag">vs.</span>
+            <span class="opponent-name">Krize 50</span>
+          </div>
+        </section>
+
+        <!-- 3. QR KÓD (S NEONOVÝM RÁMEČKEM A BÍLÝM TICHÝM POZADÍM) -->
+        <section class="qr-section-wrapper" aria-label="QR Kód pro přístup">
+          <div class="qr-neon-frame">
+            <div class="qr-white-plate">
+              <!-- Zde se dynamicky vygeneruje QR kód ve vysokém rozlišení -->
+              <div id="qrcode" title="Skenuj pro přístup k videím"></div>
+            </div>
+          </div>
+          <div class="qr-scan-hud">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="7" y1="12" x2="17" y2="12"></line>
+            </svg>
+            BEZPEČNOSTNÍ PŘÍSTUP K OBSAHU
+          </div>
+        </section>
+
+        <!-- 4. JASNÝ NÁVOD PRO TÁTU -->
+        <section class="instructions-block">
+          <div class="instruction-main">
+            <span class="instruction-icon" aria-hidden="true">📱</span>
+            ZAMIŘ FOTOAPARÁT SVÉHO TELEFONU NA KÓD
+          </div>
+          <div class="instruction-sub">
+            Zhlédni uniklé záběry z extrémní přípravy šampiona 🔥
+          </div>
+        </section>
+
+        <!-- 5. PATIČKA: OKTAGON 100, DATUM & ARÉNA -->
+        <footer class="card-footer-block">
+          <div class="gold-divider" aria-hidden="true"></div>
+          <div class="event-details">
+            <span>OKTAGON 100</span>
+            <span class="event-dot">•</span>
+            <span>29. 12. 2026</span>
+            <span class="event-dot">•</span>
+            <span>PRAHA O2 ARENA</span>
+          </div>
+          <div class="security-bar-row">
+            <span class="security-serial">DOC: MS-BJP-0050 // VIP-PASS</span>
+            <span class="fake-barcode" aria-hidden="true">||| | || |||| | ||| ||||| |</span>
+            <span>SEKTOR A • ŘADA 1</span>
+          </div>
+        </footer>
+
+      </div><!-- /card-content -->
+
+    </main><!-- /card-outer-wrapper -->
+
+  </div><!-- /screen-container -->
+
+  <!-- ==========================================================================
+       GENERÁTOR QR KÓDU VE VYSOKÉM ROZLIŠENÍ
+       ========================================================================== -->
+  <script>
+    /* ==========================================================================
+       KONFIGURACE CÍLOVÉ ADRESY
+       Zde můžete kdykoliv jednoduše upravit URL odkaz, kam má QR kód směřovat.
+       ========================================================================== */
+    const TARGET_URL = "https://kubkic-code.github.io/Instagram/";
+
+    /**
+     * Vygenerování ostrého a spolehlivě čitelného QR kódu
+     * - Rozměr 360x360 px pro perfektní ostrost při tisku
+     * - CorrectLevel.H (nejvyšší úroveň korekce chyb 30 %)
+     * - Vynikající čitelnost pro fotoaparáty telefonů i při horším osvětlení
+     */
+    function initQRCode() {
+      const qrContainer = document.getElementById("qrcode");
+      if (!qrContainer) return;
+
+      // Vyčištění kontejneru pro případný re-render
+      qrContainer.innerHTML = "";
+
+      if (typeof QRCode !== "undefined") {
+        new QRCode(qrContainer, {
+          text: TARGET_URL,
+          width: 360,
+          height: 360,
+          colorDark: "#000000",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.H,
+        });
+      } else {
+        // Fallback pokud by se CDN knihovna z nějakého důvodu nenačetla
+        console.warn("QRCode knihovna nebyla nalezena, použiji záložní generování...");
+        const fallbackImg = document.createElement("img");
+        fallbackImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=360x360&margin=0&data=${encodeURIComponent(TARGET_URL)}`;
+        fallbackImg.alt = "QR kód pro přístup";
+        qrContainer.appendChild(fallbackImg);
+      }
+    }
+
+    // Spuštění inicializace po načtení DOMu
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initQRCode);
+    } else {
+      initQRCode();
+    }
+  </script>
+
+</body>
+
+</html>
