@@ -1,15 +1,15 @@
 # 🥊 Martin Sedlák – 50 let v kleci | Instagram Template Gift Web
 
-[![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)](https://github.com/kubkic-code/Instagram_template_gift_web)
-[![Event](https://img.shields.io/badge/Oktagon-50%20Narozeniny-gold?style=for-the-badge&logo=target)](https://github.com/kubkic-code/Instagram_template_gift_web)
-[![BJP](https://img.shields.io/badge/Vibe-BJP%20%23Oktagon100-red?style=for-the-badge)](https://github.com/kubkic-code/Instagram_template_gift_web)
+[![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)](https://github.com/kubkic-code/Instagram)
+[![Event](https://img.shields.io/badge/Oktagon-50%20Narozeniny-gold?style=for-the-badge&logo=target)](https://github.com/kubkic-code/Instagram)
+[![BJP](https://img.shields.io/badge/Vibe-BJP%20%23Oktagon100-red?style=for-the-badge)](https://github.com/kubkic-code/Instagram)
 
 > **Interaktivní zážitkový web stylizovaný do věrného Instagram příspěvku vytvořený jako originální narozeninový dar k 50. narozeninám pro tátu – Martina „The Terminator“ Sedláka.**  
 > Soupeř (*Krize 50*) nemá ani tu nejmenší šanci. 💪🔥 #BJP #Oktagon100
 
-| 📱 Živý Instagram web | 🖨️ Tisková karta s QR kódem (A5) |
+| 📱 Živý Instagram web (Cíl QR kódu) | 🖨️ Tisková karta s QR kódem (A5) |
 | :--- | :--- |
-| 👉 **[Otevřít Instagram web](https://kubkic-code.github.io/Instagram_template_gift_web/)** | 👉 **[Otevřít kartu k tisku (QR kód)](https://kubkic-code.github.io/Instagram_template_gift_web/zadni-strana-qr.html)** |
+| 👉 **[Otevřít Instagram web](https://kubkic-code.github.io/Instagram/)** | 👉 **[Otevřít kartu k tisku (QR kód)](https://kubkic-code.github.io/Instagram/zadni-strana-qr.html)** |
 
 ---
 
@@ -91,7 +91,7 @@ python -m http.server 8000
    - **Source:** `Deploy from a branch`
    - **Branch:** `main` / `root`
 3. Klikněte na **Save**. Během minutky bude web živě dostupný na URL:  
-   `https://kubkic-code.github.io/Instagram_template_gift_web/`
+   `https://kubkic-code.github.io/Instagram/`
 
 ---
 
