@@ -7,6 +7,10 @@
 > **Interaktivní zážitkový web stylizovaný do věrného Instagram příspěvku vytvořený jako originální narozeninový dar k 50. narozeninám pro tátu – Martina „The Terminator“ Sedláka.**  
 > Soupeř (*Krize 50*) nemá ani tu nejmenší šanci. 💪🔥 #BJP #Oktagon100
 
+| 📱 Živý Instagram web | 🖨️ Tisková karta s QR kódem (A5) |
+| :--- | :--- |
+| 👉 **[Otevřít Instagram web](https://kubkic-code.github.io/Instagram_template_gift_web/)** | 👉 **[Otevřít kartu k tisku (QR kód)](https://kubkic-code.github.io/Instagram_template_gift_web/zadni-strana-qr.html)** |
+
 ---
 
 ## 📖 O projektu
