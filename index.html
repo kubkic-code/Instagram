@@ -1,0 +1,1849 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Martin Sedlák – 50 let v kleci 🥊</title>
+  <meta name="description" content="Uniklé záběry z přípravy na titulový zápas k 50. narozeninám. Soupeř nemá šanci." />
+
+  <!-- Open Graph / WhatsApp / Messenger náhled -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="🥊 Martin Sedlák – 50 let v kleci | Oktagon Special" />
+  <meta property="og:description"
+    content="Uniklé záběry z přípravy na titulový zápas k 50. narozeninám. Soupeř (Krize 50) nemá šanci. #BJP #Oktagon #Narozeniny" />
+  <meta property="og:image" content="media/og_preview.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="🥊 Martin Sedlák – 50 let v kleci" />
+  <meta name="twitter:description" content="Uniklé záběry z přípravy. #BJP #Oktagon" />
+  <meta name="twitter:image" content="media/og_preview.jpg" />
+
+  <!-- Swiper.js CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <style>
+    /* ===================================================
+       RESET & BASE
+    =================================================== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --ig-bg: #000000;
+      --ig-surface: #121212;
+      --ig-border: #262626;
+      --ig-text: #ffffff;
+      --ig-text-muted: #a8a8a8;
+      --ig-blue: #0095f6;
+      --ig-red: #ff3040;
+      --gold-primary: #d4a017;
+      --gold-light: #f5c842;
+      --gold-dark: #8b6914;
+      --font-ig: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --story-ring: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    }
+
+    html,
+    body {
+      background: var(--ig-bg);
+      color: var(--ig-text);
+      font-family: var(--font-ig);
+      min-height: 100vh;
+      overscroll-behavior: none;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      padding: 0;
+    }
+
+    /* ===================================================
+       MAIN APP CONTAINER – max 450px (phone width)
+    =================================================== */
+    #app {
+      width: 100%;
+      max-width: 450px;
+      background: var(--ig-bg);
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* ===================================================
+       IG TOP NAV BAR (dekorace)
+    =================================================== */
+    .ig-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px 6px;
+      border-bottom: 1px solid var(--ig-border);
+    }
+
+    .ig-topbar-logo {
+      font-size: 22px;
+      font-weight: 700;
+      font-family: 'Billabong', 'Dancing Script', cursive, var(--font-ig);
+      letter-spacing: -0.5px;
+      background: var(--story-ring);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .ig-topbar-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .ig-topbar-actions svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--ig-text);
+      cursor: pointer;
+    }
+
+    /* ===================================================
+       POST HEADER
+    =================================================== */
+    .post-header {
+      display: flex;
+      align-items: center;
+      padding: 10px 12px;
+      gap: 10px;
+    }
+
+    /* Avatar s IG Story ring */
+    .avatar-wrapper {
+      position: relative;
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      padding: 2px;
+      background: var(--story-ring);
+      cursor: pointer;
+    }
+
+    .avatar-inner {
+      position: absolute;
+      inset: 2px;
+      border-radius: 50%;
+      background: var(--ig-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .avatar-fallback {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, #1a1a2e, #c0392b);
+    }
+
+    .post-user-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .post-username-row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+
+    .post-username {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--ig-text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .verified-badge {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .verified-badge svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .post-location {
+      font-size: 11.5px;
+      color: var(--ig-text-muted);
+      margin-top: 1px;
+    }
+
+    .post-more-btn {
+      padding: 8px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: var(--ig-text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .post-more-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--ig-text);
+    }
+
+    /* ===================================================
+       CAROUSEL / SWIPER
+    =================================================== */
+    .carousel-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background: #111;
+      overflow: hidden;
+    }
+
+    .swiper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .slide-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    /* Fallback placeholder pokud obrázek nebude nalezen */
+    .slide-placeholder {
+      width: 100%;
+      height: 100%;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+    }
+
+    .slide-placeholder-icon {
+      font-size: 52px;
+      opacity: 0.45;
+    }
+
+    .slide-placeholder-label {
+      font-size: 12px;
+      color: var(--ig-text-muted);
+      opacity: 0.6;
+      font-family: monospace;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .slide-placeholder-hint {
+      font-size: 11px;
+      color: var(--ig-text-muted);
+      opacity: 0.4;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    /* VIDEO */
+    .slide-video-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .slide-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-play-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      transition: opacity 0.25s;
+    }
+
+    .video-play-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .video-play-btn {
+      width: 68px;
+      height: 68px;
+      background: rgba(255, 255, 255, 0.88);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .video-play-btn svg {
+      width: 28px;
+      height: 28px;
+      fill: #000;
+      margin-left: 4px;
+    }
+
+    /* ===================================================
+       SLIDE COUNTER (1/10)
+    =================================================== */
+    .slide-counter {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 12px;
+      z-index: 10;
+      pointer-events: none;
+      letter-spacing: 0.4px;
+    }
+
+    /* Swiper navigation arrows */
+    .swiper-button-prev,
+    .swiper-button-next {
+      color: #fff !important;
+      background: rgba(0, 0, 0, 0.55) !important;
+      width: 34px !important;
+      height: 34px !important;
+      border-radius: 50% !important;
+      backdrop-filter: blur(4px) !important;
+    }
+
+    .swiper-button-prev::after,
+    .swiper-button-next::after {
+      font-size: 13px !important;
+      font-weight: 900 !important;
+    }
+
+    /* Swiper pagination dots (external) */
+    .swiper-pagination-external {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 0 4px;
+      min-height: 22px;
+    }
+
+    .pg-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 3px;
+      background: var(--ig-text-muted);
+      opacity: 0.45;
+      transition: width 0.3s ease, background 0.3s ease, opacity 0.3s ease;
+      cursor: pointer;
+    }
+
+    .pg-dot.active {
+      background: var(--ig-blue);
+      opacity: 1;
+      width: 18px;
+    }
+
+    /* ===================================================
+       DOUBLE-TAP HEART ANIMATION
+    =================================================== */
+    .heart-anim-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      z-index: 20;
+    }
+
+    .heart-anim-icon {
+      font-size: 100px;
+      transform: scale(0);
+      opacity: 0;
+      filter: drop-shadow(0 0 20px rgba(255, 48, 64, 0.8));
+    }
+
+    .heart-anim-icon.animate {
+      animation: heartPop 0.75s cubic-bezier(0.17, 0.89, 0.32, 1.49) forwards;
+    }
+
+    @keyframes heartPop {
+      0% {
+        transform: scale(0);
+        opacity: 1;
+      }
+
+      40% {
+        transform: scale(1.2);
+        opacity: 1;
+      }
+
+      70% {
+        transform: scale(0.95);
+        opacity: 1;
+      }
+
+      85% {
+        transform: scale(1.05);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(0.9);
+        opacity: 0;
+      }
+    }
+
+    /* ===================================================
+       ACTION BAR
+    =================================================== */
+    .action-bar {
+      display: flex;
+      align-items: center;
+      padding: 6px 12px 4px;
+    }
+
+    .action-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex: 1;
+    }
+
+    .action-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.15s;
+      -webkit-tap-highlight-color: transparent;
+      border-radius: 50%;
+    }
+
+    .action-btn:active {
+      transform: scale(0.82);
+    }
+
+    .action-btn svg {
+      width: 26px;
+      height: 26px;
+      transition: fill 0.2s, transform 0.2s;
+    }
+
+    #like-btn.liked svg.heart-icon {
+      fill: var(--ig-red);
+      stroke: none;
+      animation: likeHeartBeat 0.35s cubic-bezier(0.17, 0.89, 0.32, 1.49);
+    }
+
+    @keyframes likeHeartBeat {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.3);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .save-btn {
+      margin-left: auto;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 0.15s;
+      border-radius: 50%;
+    }
+
+    .save-btn:active {
+      transform: scale(0.82);
+    }
+
+    .save-btn svg {
+      width: 26px;
+      height: 26px;
+      fill: none;
+      stroke: var(--ig-text);
+      stroke-width: 2;
+      transition: fill 0.2s, stroke 0.2s;
+    }
+
+    .save-btn.saved svg {
+      fill: var(--ig-text);
+      stroke: var(--ig-text);
+    }
+
+    /* ===================================================
+       LIKES COUNT
+    =================================================== */
+    .likes-count {
+      padding: 2px 16px 6px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--ig-text);
+    }
+
+    /* ===================================================
+       POST CAPTION
+    =================================================== */
+    .post-caption {
+      padding: 0 16px 8px;
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--ig-text);
+    }
+
+    .post-caption .username-link {
+      font-weight: 700;
+      color: var(--ig-text);
+    }
+
+    .post-caption .hashtag {
+      color: var(--ig-blue);
+    }
+
+    /* ===================================================
+       TIMESTAMP
+    =================================================== */
+    .post-timestamp {
+      padding: 0 16px 10px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--ig-text-muted);
+    }
+
+    /* ===================================================
+       COMMENTS SECTION
+    =================================================== */
+    .comments-section {
+      padding: 0 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
+
+    .comments-label {
+      font-size: 13.5px;
+      color: var(--ig-text-muted);
+      cursor: pointer;
+    }
+
+    .comment-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .comment-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .comment-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .comment-text {
+      font-size: 13.5px;
+      line-height: 1.45;
+      color: var(--ig-text);
+    }
+
+    .comment-text .c-user {
+      font-weight: 700;
+    }
+
+    .comment-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .comment-time,
+    .comment-likes {
+      font-size: 11px;
+      color: var(--ig-text-muted);
+    }
+
+    .comment-reply-btn {
+      font-size: 11px;
+      color: var(--ig-text-muted);
+      font-weight: 700;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .comment-heart {
+      margin-left: auto;
+      cursor: pointer;
+      font-size: 13px;
+      padding: 2px;
+      flex-shrink: 0;
+      user-select: none;
+    }
+
+    /* ===================================================
+       ADD COMMENT INPUT
+    =================================================== */
+    .add-comment-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px 14px;
+      border-top: 1px solid var(--ig-border);
+    }
+
+    .add-comment-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+      flex-shrink: 0;
+    }
+
+    .add-comment-input {
+      flex: 1;
+      background: none;
+      border: none;
+      outline: none;
+      color: var(--ig-text);
+      font-size: 13.5px;
+      font-family: var(--font-ig);
+    }
+
+    .add-comment-input::placeholder {
+      color: var(--ig-text-muted);
+    }
+
+    .add-comment-emoji-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1;
+      padding: 4px;
+    }
+
+    /* ===================================================
+       VOUCHER SLIDE (poslední slide #10)
+    =================================================== */
+    .voucher-slide {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .voucher-slide::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(212, 160, 23, 0.22) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 100%, rgba(212, 160, 23, 0.12) 0%, transparent 45%);
+      pointer-events: none;
+    }
+
+    /* Dekorativní zlaté "paprsky" pozadí */
+    .voucher-slide::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg at 50% 50%,
+          transparent 0deg, rgba(212, 160, 23, 0.03) 5deg, transparent 10deg,
+          transparent 20deg, rgba(212, 160, 23, 0.03) 25deg, transparent 30deg,
+          transparent 40deg, rgba(212, 160, 23, 0.03) 45deg, transparent 50deg,
+          transparent 60deg, rgba(212, 160, 23, 0.03) 65deg, transparent 70deg,
+          transparent 80deg, rgba(212, 160, 23, 0.03) 85deg, transparent 90deg,
+          transparent 100deg, rgba(212, 160, 23, 0.03) 105deg, transparent 110deg,
+          transparent 120deg, rgba(212, 160, 23, 0.03) 125deg, transparent 130deg,
+          transparent 140deg, rgba(212, 160, 23, 0.03) 145deg, transparent 150deg,
+          transparent 160deg, rgba(212, 160, 23, 0.03) 165deg, transparent 170deg,
+          transparent 180deg, rgba(212, 160, 23, 0.03) 185deg, transparent 190deg,
+          transparent 200deg, rgba(212, 160, 23, 0.03) 205deg, transparent 210deg,
+          transparent 220deg, rgba(212, 160, 23, 0.03) 225deg, transparent 230deg,
+          transparent 240deg, rgba(212, 160, 23, 0.03) 245deg, transparent 250deg,
+          transparent 260deg, rgba(212, 160, 23, 0.03) 265deg, transparent 270deg,
+          transparent 280deg, rgba(212, 160, 23, 0.03) 285deg, transparent 290deg,
+          transparent 300deg, rgba(212, 160, 23, 0.03) 305deg, transparent 310deg,
+          transparent 320deg, rgba(212, 160, 23, 0.03) 325deg, transparent 330deg,
+          transparent 340deg, rgba(212, 160, 23, 0.03) 345deg, transparent 350deg,
+          transparent 360deg);
+      pointer-events: none;
+    }
+
+    .voucher-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 360px;
+      border-radius: 14px;
+      padding: 22px 20px 18px;
+      text-align: center;
+      background:
+        linear-gradient(#050505, #050505) padding-box,
+        linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-primary) 30%, var(--gold-light) 50%, var(--gold-primary) 70%, var(--gold-dark) 100%) border-box;
+      border: 2px solid transparent;
+      box-shadow:
+        0 0 50px rgba(212, 160, 23, 0.25),
+        0 0 100px rgba(212, 160, 23, 0.1),
+        inset 0 0 30px rgba(212, 160, 23, 0.04);
+    }
+
+    .voucher-label-top {
+      font-size: 9.5px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .voucher-octagon-svg {
+      margin: 0 auto 10px;
+      display: block;
+      filter: drop-shadow(0 0 8px rgba(245, 200, 66, 0.6));
+    }
+
+    .voucher-title {
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      line-height: 1.2;
+      margin-bottom: 4px;
+      text-shadow: 0 0 20px rgba(245, 200, 66, 0.45);
+    }
+
+    .voucher-subtitle {
+      font-size: 12px;
+      color: var(--gold-primary);
+      margin-bottom: 14px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+    }
+
+    .voucher-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+      margin: 12px 0;
+    }
+
+    .voucher-event-name {
+      font-size: 17px;
+      font-weight: 900;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 2px;
+    }
+
+    .voucher-event-sub {
+      font-size: 11px;
+      color: var(--ig-text-muted);
+      margin-bottom: 14px;
+    }
+
+    .voucher-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .voucher-detail-item {
+      text-align: center;
+    }
+
+    .voucher-detail-label {
+      font-size: 8.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      margin-bottom: 2px;
+      font-weight: 600;
+    }
+
+    .voucher-detail-value {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .voucher-perf {
+      position: relative;
+      height: 8px;
+      display: flex;
+      align-items: center;
+    }
+
+    .voucher-perf::after {
+      content: '';
+      display: block;
+      width: 100%;
+      border-bottom: 1.5px dashed rgba(212, 160, 23, 0.35);
+    }
+
+    .voucher-number-row {
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold-primary) 50%, var(--gold-light));
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin: 10px 0;
+    }
+
+    .voucher-number-label {
+      font-size: 8.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.65);
+      margin-bottom: 2px;
+      font-weight: 600;
+    }
+
+    .voucher-number-value {
+      font-size: 15px;
+      font-weight: 900;
+      color: #000;
+      letter-spacing: 4px;
+      font-family: monospace;
+    }
+
+    .voucher-footer-text {
+      font-size: 10px;
+      color: var(--ig-text-muted);
+      line-height: 1.6;
+    }
+
+    .voucher-footer-text strong {
+      color: var(--gold-primary);
+    }
+
+    .voucher-seal {
+      margin-top: 12px;
+      font-size: 26px;
+      display: block;
+      animation: sealGlow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes sealGlow {
+      from {
+        filter: drop-shadow(0 0 4px rgba(212, 160, 23, 0.4));
+      }
+
+      to {
+        filter: drop-shadow(0 0 14px rgba(245, 200, 66, 0.9));
+      }
+    }
+
+    /* ===================================================
+       FOOTER SPACER
+    =================================================== */
+    .footer-spacer {
+      height: 40px;
+    }
+
+    /* ===================================================
+       DESKTOP CHROME DECORATION
+    =================================================== */
+    @media (min-width: 451px) {
+      body {
+        padding: 20px 16px 40px;
+        align-items: flex-start;
+        background: #0a0a0a;
+      }
+
+      #app {
+        border: 1px solid var(--ig-border);
+        border-radius: 4px;
+        min-height: auto;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.8);
+      }
+    }
+
+    /* ===================================================
+       UTILITY
+    =================================================== */
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+
+    <!-- IG TOP NAV BAR (dekorace) -->
+    <nav class="ig-topbar" aria-label="Instagram navigace">
+      <span class="ig-topbar-logo">Instagram</span>
+      <div class="ig-topbar-actions">
+        <!-- Srdíčko (aktivita) -->
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="Aktivita" role="img">
+          <path
+            d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.517-4.903 7.574-9.5 12-4.597-4.426-9.5-8.483-9.5-12a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 0 1 3.679-1.938Z" />
+        </svg>
+        <!-- Direct (papírové letadlo) -->
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="Zprávy" role="img">
+          <line x1="22" y1="3" x2="9.218" y2="10.083" stroke="white" stroke-width="2" stroke-linecap="round"
+            fill="none" />
+          <polygon points="11.698 20.334 22 3.001 2 9.233 11.698 20.334" fill="none" stroke="white" stroke-width="2"
+            stroke-linejoin="round" />
+        </svg>
+      </div>
+    </nav>
+
+    <!-- POST HEADER -->
+    <header class="post-header" id="post-header">
+      <!-- Avatar s IG gradient Story ring -->
+      <div class="avatar-wrapper" title="martin_sedlak_bjp_terminator" role="button"
+        aria-label="Zobrazit Stories uživatele martin_sedlak_bjp_terminator">
+        <div class="avatar-inner">
+          <!--
+            PLACEHOLDER AVATAR:
+            Nahraď src za cestu ke svému souboru, např.:  src="media/tata_avatar.jpg"
+            Doporučená velikost: 150x150 px, formát JPG nebo PNG
+          -->
+          <img class="avatar-img" id="tata-avatar-img" src="media/tata_avatar.jpg" alt="Martin Sedlák"
+            onerror="this.style.display='none'; document.getElementById('tata-avatar-fallback').style.display='flex';" />
+          <!-- CSS fallback pokud soubor tata_avatar.jpg neexistuje -->
+          <div class="avatar-fallback" id="tata-avatar-fallback" style="display:none;">MS</div>
+        </div>
+      </div>
+
+      <div class="post-user-info">
+        <div class="post-username-row">
+          <span class="post-username">martin_sedlak_bjp_terminator</span>
+          <!-- Modrá ověřená fajfka -->
+          <span class="verified-badge" title="Ověřený účet">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Ověřený">
+              <circle cx="12" cy="12" r="11" fill="#0095f6" />
+              <path d="M7 12.5l3.5 3.5 6.5-7" stroke="white" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </span>
+        </div>
+        <div class="post-location">📍 Extrémní tréninkový kemp BJP</div>
+      </div>
+
+      <!-- Tři tečky -->
+      <button class="post-more-btn" aria-label="Více možností" id="more-btn" type="button">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="12" cy="12" r="1.5" fill="white" />
+          <circle cx="6" cy="12" r="1.5" fill="white" />
+          <circle cx="18" cy="12" r="1.5" fill="white" />
+        </svg>
+      </button>
+    </header>
+
+    <!-- CAROUSEL WRAPPER -->
+    <div class="carousel-wrapper" role="region" aria-label="Fotky a videa">
+
+      <!-- Čítač slidů (1/18) -->
+      <div class="slide-counter" id="slide-counter" aria-live="polite" aria-label="Snímek 1 z 18">1 / 18</div>
+
+      <!-- SWIPER -->
+      <div class="swiper" id="main-swiper">
+        <div class="swiper-wrapper">
+
+          <!--
+            ============================================================
+            SLIDE 1 – FOTKA
+            Soubor: media/PXL_20260713_105902113.PORTRAIT.jpg
+            ============================================================
+          -->
+          <div class="swiper-slide" data-type="photo" data-slide="1">
+            <img class="slide-photo" src="media/1789587365973.png" alt="Záběr 1" loading="eager" />
+            <div class="heart-anim-overlay" aria-hidden="true"><span class="heart-anim-icon">❤️</span></div>
+          </div>
+
+          <!--
+            ============================================================
+            SLIDE 2 – FOTKA
+            Soubor: media/IMG-20260911-WA0001~2.jpg
+            ============================================================
+          -->
+          <div class="swiper-slide" data-type="photo" data-slide="2">
+            <img class="slide-photo" src="media/IMG-20260911-WA0001~2.jpg" alt="Záběr 2" loading="lazy" />
+            <div class="heart-anim-overlay" aria-hidden="true"><span class="heart-anim-icon">❤️</span></div>
+          </div>
+
+          <!--
+            ============================================================
+            SLIDE 3 – VIDEO (.MOV)
+            Soubor: media/20260912_104339000_iOS.MOV
+            ============================================================
+          -->
+          <div class="swiper-slide" data-type="video" data-slide="3">
+            <div class="slide-video-wrapper">
+              <video class="slide-video" id="video-3" src="media/20260912_104339000_iOS.MOV" playsinline loop
+                preload="metadata" aria-label="Video z tréninku 1"></video>
+              <div class="video-play-overlay" id="play-overlay-3" role="button" aria-label="Přehrát video">
+                <div class="video-play-btn">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="heart-anim-overlay" aria-hidden="true"><span class="heart-anim-icon">❤️</span></div>
+          </div>
+
+          <!--
+            ============================================================
+            SLIDE 4 – VIDEO (.mp4)
+            Soubor: media/25075.mp4
+            ============================================================
+          -->
+          <div class="swiper-slide" data-type="video" data-slide="4">
+            <div class="slide-video-wrapper">
+              <video class="slide-video" id="video-4" src="media/25075.mp4" playsinline loop preload="metadata"
+                aria-label="Video z tréninku 2"></video>
+              <div class="video-play-overlay" id="play-overlay-4" role="button" aria-label="Přehrát video">
+                <div class="video-play-btn">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="heart-anim-overlay" aria-hidden="true"><span class="heart-anim-icon">❤️</span></div>
+          </div>
+
+          <!--
+            ============================================================
+            SLIDE 5 – FOTKA
+            Soubor: media/1783958707000~2.jpg
+            ============================================================
+          -->
+          <div class="swiper-slide" data-type="photo" data-slide="5">
+            <img class="slide-photo" src="media/1783958707000~2.jpg" alt="Záběr 5" loading="lazy" />
+            <div class="heart-anim-overlay" aria-hidden="true"><span class="heart-anim-icon">❤️</span></div>
+          </div>
+
+          <!--
+            ============================================================
+            SLIDE 6 – FOTKA
+            Soubor: media/20260912_100654834_iOS.jpg
+            ============================================================
+          -->
+          <div class="swiper-slide" data-type="photo" data-slide="6">
+            <img class="slide-photo" src="media/20260912_100654834_iOS.jpg" alt="Záběr 6" loading="lazy" />
+            <div class="heart-anim-overlay" aria-hidden="true"><span class="heart-anim-icon">❤️</span></div>
+          </div>
+
+          <!--
+            ============================================================
+            SLIDE 7 – VIDEO (.mp4 – Gemini)
+            Soubor: media/gemini_generated_video_e6c9189c.mp4
+            ============================================================
+          -->
+          <div class="swiper-slide" data-type="video" data-slide="7">
+            <div class="slide-video-wrapper">
+              <video class="slide-video" id="video-7" src="media/gemini_generated_video_e6c9189c.mp4" playsinline loop
+                preload="metadata" aria-label="Video z tréninku 3"></video>
+              <div class="video-play-overlay" id="play-overlay-7" role="button" aria-label="Přehrát video">
+                <div class="video-play-btn">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="heart-anim-overlay" aria-hidden="true"><span class="heart-anim-icon">❤️</span></div>
+          </div>
+
+          <!--
+            ============================================================
+            SLIDE 8 – VIDEO (.mp4)
+            Soubor: media/25077.mp4
+            ============================================================
+          -->
+          <div class="swiper-slide" data-type="video" data-slide="8">
+            <div class="slide-video-wrapper">
+              <video class="slide-video" id="video-8" src="media/25077.mp4" playsinline loop preload="metadata"
+                aria-label="Video z tréninku 3"></video>
+              <div class="video-play-overlay" id="play-overlay-8" role="button" aria-label="Přehrát video">
+                <div class="video-play-btn">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="heart-anim-overlay" aria-hidden="true"><span class="heart-anim-icon">❤️</span></div>
+          </div>
+
+          <!--
+            ============================================================
+            SLIDE 8 – FOTKA
+            Soubor: media/Screenshot_20260914-111808~2.jpg
+            ============================================================
+          -->
+          <div class="swiper-slide" data-type="photo" data-slide="9">
+            <img class="slide-photo" src="media/Screenshot_20260914-111808~2.jpg" alt="Záběr 9" loading="lazy" />
+            <div class="heart-anim-overlay" aria-hidden="true"><span class="heart-anim-icon">❤️</span></div>
+          </div>
+
+          <!--
+            ============================================================
+            SLIDE 9 – FOTKA
+            Soubor: media/PXL_20260712_112107037.BURST-01.jpg
+            ============================================================
+          -->
+          <div class="swiper-slide" data-type="photo" data-slide="10">
+            <img class="slide-photo" src="media/PXL_20260712_112107037.BURST-01.jpg" alt="Záběr 10" loading="lazy" />
+            <div class="heart-anim-overlay" aria-hidden="true"><span class="heart-anim-icon">❤️</span></div>
+          </div>
+
+          <!--
+            ============================================================
+            SLIDE 10 – FOTKA
+            Soubor: media/IMG_1027~2.jpg
+            ============================================================
+          -->
+          <div class="swiper-slide" data-type="photo" data-slide="11">
+            <img class="slide-photo" src="media/IMG_1027~2.jpg" alt="Záběr 11" loading="lazy" />
+            <div class="heart-anim-overlay" aria-hidden="true"><span class="heart-anim-icon">❤️</span></div>
+          </div>
+
+          <!--
+            ============================================================
+            SLIDE 11 – VIDEO (.mp4 – zkonvertováno z .avi)
+            Soubor: media/MVI_5395.mp4
+            ============================================================
+          -->
+          <div class="swiper-slide" data-type="video" data-slide="12">
+            <div class="slide-video-wrapper">
+              <video class="slide-video" id="video-12" src="media/MVI_5395.mp4" playsinline loop preload="metadata"
+                aria-label="Video z tréninku 4"></video>
+              <div class="video-play-overlay" id="play-overlay-12" role="button" aria-label="Přehrát video">
+                <div class="video-play-btn">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="heart-anim-overlay" aria-hidden="true"><span class="heart-anim-icon">❤️</span></div>
+          </div>
+
+          <!--
+            ============================================================
+            SLIDE 12 – FOTKA
+            Soubor: media/20260912_102947774_iOS.jpg
+            ============================================================
+          -->
+          <div class="swiper-slide" data-type="photo" data-slide="13">
+            <img class="slide-photo" src="media/20260912_102947774_iOS.jpg" alt="Záběr 13" loading="lazy" />
+            <div class="heart-anim-overlay" aria-hidden="true"><span class="heart-anim-icon">❤️</span></div>
+          </div>
+
+          <!--
+            ============================================================
+            SLIDE 13 – FOTKA
+            Soubor: media/1789587365973.png
+            ============================================================
+          -->
+          <div class="swiper-slide" data-type="photo" data-slide="14">
+            <img class="slide-photo" src="media/PXL_20260713_105902113.PORTRAIT.jpg" alt="Záběr 14" loading="lazy" />
+            <div class="heart-anim-overlay" aria-hidden="true"><span class="heart-anim-icon">❤️</span></div>
+          </div>
+
+          <!--
+            ============================================================
+            SLIDE 14 – FOTKA
+            Soubor: media/20260913_095131250_iOS~2.jpg
+            ============================================================
+          -->
+          <div class="swiper-slide" data-type="photo" data-slide="15">
+            <img class="slide-photo" src="media/20260913_095131250_iOS~2.jpg" alt="Záběr 15" loading="lazy" />
+            <div class="heart-anim-overlay" aria-hidden="true"><span class="heart-anim-icon">❤️</span></div>
+          </div>
+
+          <!--
+            ============================================================
+            SLIDE 15 – FOTKA
+            Soubor: media/IMG-20241129-WA0000~2.jpg
+            ============================================================
+          -->
+          <div class="swiper-slide" data-type="photo" data-slide="16">
+            <img class="slide-photo" src="media/IMG-20241129-WA0000~2.jpg" alt="Záběr 16" loading="lazy" />
+            <div class="heart-anim-overlay" aria-hidden="true"><span class="heart-anim-icon">❤️</span></div>
+          </div>
+
+          <!--
+            ============================================================
+            SLIDE 16 – FOTKA
+            Soubor: media/PXL_20260713_192816197.jpg
+            ============================================================
+          -->
+          <div class="swiper-slide" data-type="photo" data-slide="17">
+            <img class="slide-photo" src="media/PXL_20260713_192816197.jpg" alt="Záběr 17" loading="lazy" />
+            <div class="heart-anim-overlay" aria-hidden="true"><span class="heart-anim-icon">❤️</span></div>
+          </div>
+
+          <!--
+            ============================================================
+            SLIDE 18 – VOUCHER / POZVÁNKA (POSLEDNÍ SLIDE)
+            Zlatý Oktagon certifikát – žádný obrázek není potřeba
+            ============================================================
+          -->
+          <div class="swiper-slide" data-type="voucher" data-slide="18" id="voucher-slide">
+            <div class="voucher-slide">
+              <div class="voucher-inner">
+
+                <div class="voucher-label-top">✦ Exkluzivní pozvánka ✦</div>
+
+                <!-- Oktagon SVG ikona -->
+                <svg class="voucher-octagon-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" width="60"
+                  height="60" aria-hidden="true">
+                  <polygon points="24,4 56,4 76,24 76,56 56,76 24,76 4,56 4,24" fill="none" stroke="#d4a017"
+                    stroke-width="3" />
+                  <polygon points="28,10 52,10 70,28 70,52 52,70 28,70 10,52 10,28" fill="rgba(212,160,23,0.08)"
+                    stroke="#f5c842" stroke-width="1" />
+                  <text x="40" y="46" text-anchor="middle" fill="#f5c842" font-size="22" font-weight="900"
+                    font-family="Arial,Helvetica,sans-serif">50</text>
+                </svg>
+
+                <div class="voucher-title">Narozeninový<br />Titulový Zápas</div>
+                <div class="voucher-subtitle">Martin "The Terminator" Sedlák</div>
+
+                <div class="voucher-divider"></div>
+
+                <div class="voucher-event-name">Oktagon v O2 Aréně</div>
+                <div class="voucher-event-sub">Praha · Datum bude upřesněn syny</div>
+
+                <div class="voucher-details">
+                  <div class="voucher-detail-item">
+                    <div class="voucher-detail-label">Kategorie</div>
+                    <div class="voucher-detail-value">VIP Sektor</div>
+                  </div>
+                  <div class="voucher-detail-item">
+                    <div class="voucher-detail-label">Místa</div>
+                    <div class="voucher-detail-value">3 × Premium</div>
+                  </div>
+                  <div class="voucher-detail-item">
+                    <div class="voucher-detail-label">Jméno</div>
+                    <div class="voucher-detail-value">M. Sedlák</div>
+                  </div>
+                  <div class="voucher-detail-item">
+                    <div class="voucher-detail-label">Výročí</div>
+                    <div class="voucher-detail-value">50 let 🎂</div>
+                  </div>
+                </div>
+
+                <div class="voucher-perf"></div>
+
+                <div class="voucher-number-row">
+                  <div class="voucher-number-label">Číslo pozvánky</div>
+                  <div class="voucher-number-value">BJK–0050–TATIK</div>
+                </div>
+
+                <div class="voucher-perf"></div>
+
+                <div class="voucher-footer-text">
+                  Rohovníci a lístky <strong>garantováni syny</strong><br />
+                  Jakub &amp; Petr Sedlák · <strong>#BJP · #Oktagon100</strong>
+                </div>
+
+                <span class="voucher-seal" aria-hidden="true">🏆</span>
+
+              </div>
+            </div>
+            <div class="heart-anim-overlay" aria-hidden="true"><span class="heart-anim-icon">❤️</span></div>
+          </div>
+
+        </div><!-- /swiper-wrapper -->
+
+        <!-- Navigation arrows (viditelné hlavně na desktopu) -->
+        <div class="swiper-button-prev" id="swiper-prev" aria-label="Předchozí snímek"></div>
+        <div class="swiper-button-next" id="swiper-next" aria-label="Další snímek"></div>
+
+      </div><!-- /swiper -->
+    </div><!-- /carousel-wrapper -->
+
+    <!-- PAGINATION DOTS – pod carouselem -->
+    <div class="swiper-pagination-external" id="ext-pagination" role="tablist" aria-label="Přehled snímků"></div>
+
+    <!-- ACTION BAR -->
+    <div class="action-bar" role="group" aria-label="Akce příspěvku">
+      <div class="action-bar-left">
+
+        <!-- Like (srdíčko) -->
+        <button class="action-btn" id="like-btn" type="button" aria-label="To se mi líbí" aria-pressed="false">
+          <svg class="heart-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none"
+            stroke="white" stroke-width="2">
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+
+        <!-- Komentář (bublina) -->
+        <button class="action-btn" id="comment-btn" type="button" aria-label="Komentovat">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" fill="none" stroke="white" stroke-width="2"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+
+        <!-- Sdílet (vlaštovka) -->
+        <button class="action-btn" id="share-btn" type="button" aria-label="Sdílet">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <line x1="22" y1="3" x2="9.218" y2="10.083" stroke="white" stroke-width="2" stroke-linecap="round" />
+            <polygon points="11.698 20.334 22 3.001 2 9.233 11.698 20.334" fill="none" stroke="white" stroke-width="2"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+
+      </div>
+
+      <!-- Uložit (záložka) -->
+      <button class="save-btn" id="save-btn" type="button" aria-label="Uložit" aria-pressed="false">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <polygon points="20 21 12 13.44 4 21 4 3 20 3" stroke-linejoin="round" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- POČET LAJKŮ -->
+    <div class="likes-count" id="likes-count">
+      Líbí se to <strong>jiri_bjp_prochazka</strong>, <strong>jakub_sedlak</strong>, <strong>petr_sedlak</strong> a
+      dalším <strong>50&nbsp;000</strong>
+    </div>
+
+    <!-- POPIS PŘÍSPĚVKU -->
+    <div class="post-caption">
+      <span class="username-link">martin_sedlak_bjp_terminator</span>&nbsp;Uniklé záběry z přípravy na titulový zápas k
+      50. narozeninám. Soupeř (<em>Krize 50</em>) nemá šanci. 💪🔥<br /><br />
+      <!-- ==============================================================
+           POPISKY KE KAŽDÉMU SLIDU (1–18)
+      ============================================================== -->
+      1. Po těžkém sparingu (pro mě pohodička) 🥊😎<br />
+      2. Makačka na vodě (taky pohodička) 🚣‍♂️🌊<br />
+      3. Klasický trénink na horách 🏔️🪵<br />
+      4. Jirka kopíruje můj trénink 🥋👀<br />
+      5. Neporažený šampión už od dob gladiátorů 🏛️⚔️<br />
+      6. Ticho před bouří 🤫⚡<br />
+      7. Bouře - Lvi žerou první OSSSS 🦁🔥<br />
+      8. Jirka zase kopíruje 🎬🔄😂<br />
+      9. Big boy in town 🦍🕶️<br />
+      10. With my corner 🤜🤛🤝<br />
+      11. Posilování s živou zátěží 🏋️💪<br />
+      12. Týmové sparingy s pytlem 🥊💥<br />
+      13. Takhle skočím na soupeře.... 🦅🚀<br />
+      14. Náročné dělání váhy po trénku v Římě 🍕🏛️<br />
+      15. Tohle ani Jirka nepřekoná 😤🔝<br />
+      16. Medaile jako obvykle (jiná než zlatá se ani nepočítá) 🥇🏆<br />
+      17. 🫣🤫💥<br />
+      18. Pozvánka na zápas 🎟️🥊<br />
+      <span class="hashtag">#BJP</span>
+      <span class="hashtag">#Oktagon100</span>
+      <span class="hashtag">#Narozeniny</span>
+      <span class="hashtag">#50LetVKleci</span>
+      <span class="hashtag">#lvizerouprvni</span>
+      <span class="hashtag">#MartinHardworkerSedlak</span>
+    </div>
+
+    <!-- ČASOVÁ ZNAČKA -->
+    <div class="post-timestamp">před 2 hodinami</div>
+
+    <!-- KOMENTÁŘE -->
+    <section class="comments-section" aria-label="Komentáře">
+      <div class="comments-label" role="button" tabindex="0">Zobrazit všechny komentáře (1&nbsp;247)</div>
+
+      <!-- Komentář 1: Jirka Procházka -->
+      <article class="comment-item">
+        <div class="comment-avatar" style="background: linear-gradient(135deg, #c0392b, #8e44ad);"
+          title="jiri_bjp_prochazka" aria-hidden="true">JP</div>
+        <div class="comment-body">
+          <div class="comment-text">
+            <span class="c-user">jiri_bjp_prochazka</span>&nbsp;Brácha, tohle je jiná liga. Vidím tě v kleci na sto
+            procent. 🥊🏆 Pokud potřebuješ sparingpartnera, jsem k dispozici. Ale pozor – tentokrát nehrajeme 😂
+          </div>
+          <div class="comment-meta">
+            <span class="comment-time">55 min</span>
+            <span class="comment-likes">❤️ 12 847</span>
+            <button class="comment-reply-btn" type="button">Odpovědět</button>
+          </div>
+        </div>
+        <button class="comment-heart" aria-label="Líbí se mi komentář" type="button">🤍</button>
+      </article>
+
+      <!-- Komentář 2: Jakub Sedlák -->
+      <article class="comment-item">
+        <div class="comment-avatar" style="background: linear-gradient(135deg, #1a237e, #0288d1);" title="jakub_sedlak"
+          aria-hidden="true">JS</div>
+        <div class="comment-body">
+          <div class="comment-text">
+            <span class="c-user">jakub_sedlak</span>&nbsp;Táto, lístky jsou zajištěny. Sektor A, řada 1. Soupeř (Krize
+            50) nemá vůbec šanci. Trénuj dál, my tě pohlídáme! 💪🎂
+          </div>
+          <div class="comment-meta">
+            <span class="comment-time">47 min</span>
+            <span class="comment-likes">❤️ 3 214</span>
+            <button class="comment-reply-btn" type="button">Odpovědět</button>
+          </div>
+        </div>
+        <button class="comment-heart" aria-label="Líbí se mi komentář" type="button">🤍</button>
+      </article>
+
+      <!-- Komentář 3: Petr Sedlák -->
+      <article class="comment-item">
+        <div class="comment-avatar" style="background: linear-gradient(135deg, #1b5e20, #43a047);" title="petr_sedlak"
+          aria-hidden="true">PS</div>
+        <div class="comment-body">
+          <div class="comment-text">
+            <span class="c-user">petr_sedlak</span>&nbsp;Ty videa ze třetího a sedmého slidu mě zabilo. 😭😂 Táto, ty
+            jsi legenda.
+            Šťastných 50, z klece tě nikdy nedostanou! 🔥🥊
+          </div>
+          <div class="comment-meta">
+            <span class="comment-time">42 min</span>
+            <span class="comment-likes">❤️ 2 891</span>
+            <button class="comment-reply-btn" type="button">Odpovědět</button>
+          </div>
+        </div>
+        <button class="comment-heart" aria-label="Líbí se mi komentář" type="button">🤍</button>
+      </article>
+
+      <!-- Komentář 4: Fanoušci hype 1 -->
+      <article class="comment-item">
+        <div class="comment-avatar" style="background: linear-gradient(135deg, #f57f17, #e53935);"
+          title="octagon_fans_cz" aria-hidden="true">OF</div>
+        <div class="comment-body">
+          <div class="comment-text">
+            <span class="c-user">octagon_fans_cz</span>&nbsp;LFG!!! 🔥🔥🔥 TERMINATOR je zpět! Celá Praha čeká! 💥💥💥
+          </div>
+          <div class="comment-meta">
+            <span class="comment-time">38 min</span>
+            <span class="comment-likes">❤️ 971</span>
+            <button class="comment-reply-btn" type="button">Odpovědět</button>
+          </div>
+        </div>
+        <button class="comment-heart" aria-label="Líbí se mi komentář" type="button">🤍</button>
+      </article>
+
+      <!-- Komentář 5: Fanoušci hype 2 -->
+      <article class="comment-item">
+        <div class="comment-avatar" style="background: linear-gradient(135deg, #4a148c, #7b1fa2);"
+          title="mma_fanatic_99" aria-hidden="true">MF</div>
+        <div class="comment-body">
+          <div class="comment-text">
+            <span class="c-user">mma_fanatic_99</span>&nbsp;50 let?! Vypadá jako 30. Co jí? 😤💪 Sdílím dál, tohle musí
+            vidět celý svět! 🌍 #AllEyesOnSedlak
+          </div>
+          <div class="comment-meta">
+            <span class="comment-time">31 min</span>
+            <span class="comment-likes">❤️ 654</span>
+            <button class="comment-reply-btn" type="button">Odpovědět</button>
+          </div>
+        </div>
+        <button class="comment-heart" aria-label="Líbí se mi komentář" type="button">🤍</button>
+      </article>
+
+      <!-- Komentář 6: Vtipný -->
+      <article class="comment-item">
+        <div class="comment-avatar" style="background: linear-gradient(135deg, #006064, #00838f);"
+          title="czech_mma_hype" aria-hidden="true">CM</div>
+        <div class="comment-body">
+          <div class="comment-text">
+            <span class="c-user">czech_mma_hype</span>&nbsp;Kámo, Krize 50 ti nestojí za teplo. Tenhle chlap trénoval v
+            kaňonech! 😂 Vítěz je jasnej. 🏆
+          </div>
+          <div class="comment-meta">
+            <span class="comment-time">22 min</span>
+            <span class="comment-likes">❤️ 1 103</span>
+            <button class="comment-reply-btn" type="button">Odpovědět</button>
+          </div>
+        </div>
+        <button class="comment-heart" aria-label="Líbí se mi komentář" type="button">🤍</button>
+      </article>
+
+      <!-- Komentář 7: Emoji barrage -->
+      <article class="comment-item">
+        <div class="comment-avatar" style="background: linear-gradient(135deg, #bf360c, #f4511e);"
+          title="fight_night_cz" aria-hidden="true">FN</div>
+        <div class="comment-body">
+          <div class="comment-text">
+            <span class="c-user">fight_night_cz</span>&nbsp;🥊🥊🥊🔥🔥🔥💪💪 WE ARE READY!!! OKTAGON!!! 🎯🎯🎯
+          </div>
+          <div class="comment-meta">
+            <span class="comment-time">14 min</span>
+            <span class="comment-likes">❤️ 487</span>
+            <button class="comment-reply-btn" type="button">Odpovědět</button>
+          </div>
+        </div>
+        <button class="comment-heart" aria-label="Líbí se mi komentář" type="button">🤍</button>
+      </article>
+
+      <!-- Komentář 8: Emoji barrage -->
+      <article class="comment-item">
+        <div class="comment-avatar" style="background: linear-gradient(135deg, #08836e, #0b6d9b);"
+          title="fight_night_cz" aria-hidden="true">MS</div>
+        <div class="comment-body">
+          <div class="comment-text">
+            <span class="c-user">MMA_shorties</span>&nbsp;Champ is back!!! 💪👑
+          </div>
+          <div class="comment-meta">
+            <span class="comment-time">10 min</span>
+            <span class="comment-likes">❤️ 612</span>
+            <button class="comment-reply-btn" type="button">Odpovědět</button>
+          </div>
+        </div>
+        <button class="comment-heart" aria-label="Líbí se mi komentář" type="button">🤍</button>
+      </article>
+
+    </section>
+
+    <!-- ADD COMMENT INPUT (dekorace) -->
+    <div class="add-comment-bar">
+      <div class="add-comment-avatar" aria-hidden="true"></div>
+      <input class="add-comment-input" type="text" placeholder="Přidat komentář..." aria-label="Přidat komentář" />
+      <button class="add-comment-emoji-btn" type="button" aria-label="Vybrat emoji">😊</button>
+    </div>
+
+    <div class="footer-spacer"></div>
+
+  </div><!-- /app -->
+
+  <script>
+    /* ================================================================
+       SWIPER INICIALIZACE
+    ================================================================ */
+    const TOTAL_SLIDES = 18;
+    const counterEl = document.getElementById('slide-counter');
+    const extPagEl = document.getElementById('ext-pagination');
+
+    const swiper = new Swiper('#main-swiper', {
+      slidesPerView: 1,
+      spaceBetween: 0,
+      speed: 340,
+      grabCursor: true,
+      touchRatio: 1,
+      a11y: false,        // custom aria řešíme sami
+      navigation: {
+        nextEl: '#swiper-next',
+        prevEl: '#swiper-prev',
+      },
+      on: {
+        afterInit() {
+          buildPagination();
+          updateCounter(0);
+          updatePagination(0);
+        },
+        slideChange() {
+          const idx = this.activeIndex;
+          updateCounter(idx);
+          updatePagination(idx);
+          pauseAllVideos();
+        },
+      },
+    });
+
+    /* ----------------------------------------------------------------
+       COUNTER UPDATE
+    ---------------------------------------------------------------- */
+    function updateCounter(idx) {
+      const label = `${idx + 1} / ${TOTAL_SLIDES}`;
+      counterEl.textContent = label;
+      counterEl.setAttribute('aria-label', `Snímek ${idx + 1} z ${TOTAL_SLIDES}`);
+    }
+
+    /* ----------------------------------------------------------------
+       PAGINATION DOTS
+    ---------------------------------------------------------------- */
+    function buildPagination() {
+      extPagEl.innerHTML = '';
+      for (let i = 0; i < TOTAL_SLIDES; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'pg-dot' + (i === 0 ? ' active' : '');
+        dot.type = 'button';
+        dot.setAttribute('role', 'tab');
+        dot.setAttribute('aria-label', `Přejít na snímek ${i + 1}`);
+        dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+        dot.addEventListener('click', () => swiper.slideTo(i));
+        extPagEl.appendChild(dot);
+      }
+    }
+
+    function updatePagination(activeIdx) {
+      extPagEl.querySelectorAll('.pg-dot').forEach((dot, i) => {
+        const isActive = i === activeIdx;
+        dot.classList.toggle('active', isActive);
+        dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+    }
+
+    /* ----------------------------------------------------------------
+       VIDEO MANAGEMENT
+       Videa se přehrávají pouze po kliknutí (žádný autoplay).
+    ---------------------------------------------------------------- */
+    function setupVideoSlide(slideEl) {
+      const video = slideEl.querySelector('.slide-video');
+      const overlay = slideEl.querySelector('.video-play-overlay');
+      if (!video || !overlay) return;
+
+      overlay.addEventListener('click', () => toggleVideo(video, overlay));
+      // Klik přímo na video = pauza + zobrazí overlay
+      video.addEventListener('click', () => {
+        video.pause();
+        overlay.classList.remove('hidden');
+      });
+    }
+
+    function toggleVideo(video, overlay) {
+      if (video.paused) {
+        video.play().catch(() => { }); // ignore autoplay policy errors
+        overlay.classList.add('hidden');
+      } else {
+        video.pause();
+        overlay.classList.remove('hidden');
+      }
+    }
+
+    function pauseAllVideos() {
+      document.querySelectorAll('.slide-video').forEach((video) => {
+        if (!video.paused) {
+          video.pause();
+          const overlay = video.closest('.slide-video-wrapper')?.querySelector('.video-play-overlay');
+          if (overlay) overlay.classList.remove('hidden');
+        }
+      });
+    }
+
+    // Inicializuj video ovládání pro každý video slide
+    document.querySelectorAll('.swiper-slide[data-type="video"]').forEach(setupVideoSlide);
+
+    /* ----------------------------------------------------------------
+       LIKE BUTTON + DOUBLE-TAP / DOUBLE-CLICK NA SNÍMKU
+    ---------------------------------------------------------------- */
+    let isLiked = false;
+    const likeBtn = document.getElementById('like-btn');
+    const heartIcon = likeBtn.querySelector('.heart-icon');
+
+    function activateLike() {
+      isLiked = true;
+      likeBtn.classList.add('liked');
+      likeBtn.setAttribute('aria-pressed', 'true');
+      // Přepiš SVG na vyplněné srdce
+      heartIcon.setAttribute('fill', '#ff3040');
+      heartIcon.setAttribute('stroke', '#ff3040');
+    }
+
+    function toggleLike() {
+      isLiked = !isLiked;
+      likeBtn.classList.toggle('liked', isLiked);
+      likeBtn.setAttribute('aria-pressed', isLiked.toString());
+      if (isLiked) {
+        heartIcon.setAttribute('fill', '#ff3040');
+        heartIcon.setAttribute('stroke', '#ff3040');
+        heartIcon.style.animation = 'none';
+        void heartIcon.offsetWidth;
+        heartIcon.style.animation = 'likeHeartBeat 0.35s cubic-bezier(0.17, 0.89, 0.32, 1.49)';
+      } else {
+        heartIcon.setAttribute('fill', 'none');
+        heartIcon.setAttribute('stroke', 'white');
+        heartIcon.style.animation = '';
+      }
+    }
+
+    likeBtn.addEventListener('click', toggleLike);
+
+    function triggerHeartAnimation(slideEl) {
+      const heartAnim = slideEl.querySelector('.heart-anim-icon');
+      if (!heartAnim) return;
+      heartAnim.classList.remove('animate');
+      void heartAnim.offsetWidth; // force reflow
+      heartAnim.classList.add('animate');
+      heartAnim.addEventListener('animationend', () => heartAnim.classList.remove('animate'), { once: true });
+      activateLike();
+    }
+
+    // Double-tap (mobilní)
+    const swiperEl = document.getElementById('main-swiper');
+    let lastTap = 0;
+
+    swiperEl.addEventListener('touchend', (e) => {
+      const now = Date.now();
+      if (now - lastTap < 350 && now - lastTap > 30) {
+        e.preventDefault();
+        const activeSlide = swiper.slides[swiper.activeIndex];
+        triggerHeartAnimation(activeSlide);
+      }
+      lastTap = now;
+    }, { passive: false });
+
+    // Double-click (desktop)
+    swiperEl.addEventListener('dblclick', () => {
+      const activeSlide = swiper.slides[swiper.activeIndex];
+      triggerHeartAnimation(activeSlide);
+    });
+
+    /* ----------------------------------------------------------------
+       SAVE BUTTON
+    ---------------------------------------------------------------- */
+    const saveBtn = document.getElementById('save-btn');
+    let isSaved = false;
+
+    saveBtn.addEventListener('click', () => {
+      isSaved = !isSaved;
+      saveBtn.classList.toggle('saved', isSaved);
+      saveBtn.setAttribute('aria-pressed', isSaved.toString());
+    });
+
+    /* ----------------------------------------------------------------
+       SHARE BUTTON – Web Share API s fallbackem na clipboard
+    ---------------------------------------------------------------- */
+    const shareBtn = document.getElementById('share-btn');
+
+    shareBtn.addEventListener('click', async () => {
+      const shareData = {
+        title: '🥊 Martin Sedlák – 50 let v kleci | Oktagon Special',
+        text: 'Uniklé záběry z přípravy na titulový zápas k 50. narozeninám. Soupeř (Krize 50) nemá šanci. #BJP #Oktagon',
+        url: window.location.href,
+      };
+
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+        } catch (err) {
+          if (err.name !== 'AbortError') console.warn('Share API error:', err);
+        }
+      } else {
+        // Fallback: kopíruj URL do schránky
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          const origLabel = shareBtn.getAttribute('aria-label');
+          shareBtn.setAttribute('aria-label', 'Odkaz zkopírován!');
+          setTimeout(() => shareBtn.setAttribute('aria-label', origLabel), 2500);
+        } catch (_) {
+          console.warn('Clipboard unavailable');
+        }
+      }
+    });
+
+    /* ----------------------------------------------------------------
+       COMMENT BUTTON – plynule scrolluje na sekci komentářů
+    ---------------------------------------------------------------- */
+    document.getElementById('comment-btn').addEventListener('click', () => {
+      document.querySelector('.comments-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.querySelector('.add-comment-input')?.focus();
+    });
+
+    /* ----------------------------------------------------------------
+       KOMENTÁŘE – srdíčka (toggle)
+    ---------------------------------------------------------------- */
+    document.querySelectorAll('.comment-heart').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const liked = btn.textContent.trim() === '❤️';
+        btn.textContent = liked ? '🤍' : '❤️';
+        btn.setAttribute('aria-label', liked ? 'Líbí se mi komentář' : 'Zrušit líbí se mi');
+      });
+    });
+
+    /* ----------------------------------------------------------------
+       OBRÁZKY – fallback na placeholder pokud src nenalezeno
+    ---------------------------------------------------------------- */
+    document.querySelectorAll('.slide-photo').forEach((img) => {
+      img.addEventListener('error', function () {
+        this.style.display = 'none';
+        const ph = this.parentNode.querySelector('.slide-placeholder');
+        if (ph) ph.style.display = 'flex';
+      });
+    });
+  </script>
+
+</body>
+
+</html>
