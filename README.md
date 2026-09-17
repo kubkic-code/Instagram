@@ -56,7 +56,8 @@ Projekt vrcholí na posledním slidu exkluzivním **zlatým certifikátem / VIP 
 ## 📂 Struktura repozitáře
 
 ```text
-├── index.html           # Kompletní webová aplikace (HTML, CSS a JS v jednom souboru)
+├── index.html           # Kompletní webová aplikace (Instagram feed s 18 snímky)
+├── zadni-strana-qr.html # Tisková šablona sběratelské MMA karty s QR kódem (A5)
 ├── media/               # Optimalizovaná multimediální média
 │   ├── *.jpg / *.png    # Fotografie z tréninků, sparingů a oslav
 │   ├── *.mp4 / *.MOV    # Tréninková videa ve webových formátech
